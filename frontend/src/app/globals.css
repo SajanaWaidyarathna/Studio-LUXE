@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root{
+
+--background:#FAF7F2;
+
+--foreground:#1C1C1C;
+
+--gold:#C9A227;
+
+--text:#5A5A5A;
+
+--border:#E8E0D5;
+
+}
+
+body{
+
+background:var(--background);
+
+color:var(--foreground);
+
+font-family:var(--font-inter);
+
+}
+
+h1,h2,h3,h4,h5{
+
+font-family:var(--font-playfair);
+
+}
+
+.input-style {
+  @apply w-full rounded-2xl border border-transparent bg-white p-5 pl-14 text-sm text-[#1C1C1C] outline-none transition-all focus:border-[#1C1C1C] focus:ring-4 focus:ring-[#1C1C1C]/10;
+}
