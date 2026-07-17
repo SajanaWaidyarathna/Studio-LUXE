@@ -14,14 +14,10 @@ import { CloudinaryProvider } from './config/cloudinary.config';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DATABASE_HOST,
-      port: Number(process.env.DATABASE_PORT),
-      username: process.env.DATABASE_USERNAME,
-      password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE_NAME,
+      // 👇 Just use the single URL string here!
+      url: process.env.DATABASE_URL, 
       autoLoadEntities: true,
       synchronize: true, 
-      // 👇 Added the missing closing brace here!
       ssl: {
         rejectUnauthorized: false,
       },
