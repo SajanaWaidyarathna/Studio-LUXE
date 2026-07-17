@@ -6,8 +6,12 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // 1. UPDATED CORS: Allow localhost AND your future production frontend
   app.enableCors({
-    origin: 'http://localhost:3000', // Explicitly trust your Next.js frontend
+    origin: [
+      'http://localhost:3000', 
+      process.env.FRONTEND_URL // We will add this variable in Render later!
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
@@ -29,7 +33,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(5000);
+  // 2. UPDATED PORT: Listen to Render's port, or fallback to 5000 locally
+  await app.listen(process.env.PORT || 5000);
 }
 
 bootstrap();
