@@ -21,6 +21,10 @@ import { CloudinaryProvider } from './config/cloudinary.config';
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
       synchronize: true, 
+      // 👇 Added the missing closing brace here!
+      ssl: {
+        rejectUnauthorized: false,
+      },
     }),
     AuthModule,
     UsersModule,
