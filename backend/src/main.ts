@@ -6,13 +6,21 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // 1. UPDATED CORS: Allow localhost AND your future production frontend
+  // 1. UPDATED CORS: Allow localhost AND production frontend, filtering out undefined values
   app.enableCors({
     origin: [
       'http://localhost:3000', 
-      process.env.FRONTEND_URL // We will add this variable in Render later!
+      process.env.FRONTEND_URL,
+    ].filter(Boolean),
+    methods: [
+      'GET',
+      'HEAD',
+      'PUT',
+      'PATCH',
+      'POST',
+      'DELETE',
+      'OPTIONS',
     ],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
 
